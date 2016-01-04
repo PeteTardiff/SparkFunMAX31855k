@@ -1,5 +1,17 @@
-MAX31855K Thermocouple Breakout
+MAX31855K Thermocouple Breakout (Particle Core & Photon Compatible)
 ========================================
+
+Particle Notes
+--------------
+
+This library contains the firmware files requires to use the SparkFun MAX31855K Thermocouple Digitizer Breakout with Spark Core & Photon Boards.
+
+Assumes the use of Hardware SPI, which is [configured in the following manner for Particle boards](https://docs.particle.io/reference/firmware/photon/#spi):
+
+* A2 : SS(Slave Select)
+* A3 : SCK(Serial Clock)
+* A4 : MISO(Master In Slave Out)
+* A5 : MOSI(Master Out Slave In)
 
 <img src="https://cdn.sparkfun.com/assets/learn_tutorials/3/3/1/MAX31855K_Thermocouple_Digitizer_Hookup_Guide-05.jpg" alt="MAX31855K Thermocouple Breakout" style="max-width:50%"/>
 

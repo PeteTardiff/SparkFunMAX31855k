@@ -39,13 +39,13 @@
 #ifndef _SPARKFUN_MAX31855K_h_
 #define _SPARKFUN_MAX31855K_h_
 
-#include <SPI.h> // Have to include this in the main sketch too... (Using SPI)
+#include "application.h"
 
 class SparkFunMAX31855k
 {
 public:
   // Simple Arduino API style guide functions
-  inline float readTempC() { return readTemp(SparkFunMAX31855k::C); } 
+  inline float readTempC() { return readTemp(SparkFunMAX31855k::C); }
   inline float readTempF() { return readTemp(SparkFunMAX31855k::F); }
   inline float readTempR() { return readTemp(SparkFunMAX31855k::R); }
   inline float readTempK() { return readTemp(SparkFunMAX31855k::K); }
@@ -71,5 +71,5 @@ protected:
   void readBytes(void);
   uint8_t checkHasFault(void);
 };
- 
+
 #endif

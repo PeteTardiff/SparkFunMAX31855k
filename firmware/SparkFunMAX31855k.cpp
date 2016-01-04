@@ -24,9 +24,10 @@
  * Implementation of functions defined in SparkFunMAX31855k.h                  *
  ******************************************************************************/
 
-#include <Arduino.h>
-#include <SPI.h>
 #include "SparkFunMAX31855k.h"
+
+#include "math.h"
+#include "application.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Description  : This constructor does the required setup
@@ -62,7 +63,7 @@ SparkFunMAX31855k::SparkFunMAX31855k(const uint8_t _cs, const uint8_t _vcc,
 // chip select pin if they want to use it for something else.  We don't call
 // SPI.end() in case there is another SPI device we don't want to kill.
 ////////////////////////////////////////////////////////////////////////////////
- 
+
 ////////////////////////////////////////////////////////////////////////////////
 // Description  : This function reads the cold junction temperature
 // Input        : None
@@ -83,13 +84,11 @@ void SparkFunMAX31855k::readBytes(void)
 {
   digitalWrite(cs, LOW);
 
-  SPI.beginTransaction(SPISettings(4000000, MSBFIRST, SPI_MODE0));  // Defaults
   data.bytes[3] = SPI.transfer(0x00);
   data.bytes[2] = SPI.transfer(0x00);
   data.bytes[1] = SPI.transfer(0x00);
   data.bytes[0] = SPI.transfer(0x00);
-  SPI.endTransaction();
- 
+
   digitalWrite(cs, HIGH);
 
   return;
@@ -124,11 +123,11 @@ float SparkFunMAX31855k::readTemp(SparkFunMAX31855k::units _u)
       value = data.uint32 >> 18; // Shift off all but the temperature data
     }
   }
- 
+
   temp = value/4.0;
   switch (_u) {
   case F:
-    temp = (temp * 9.0 / 5.0) + 32.0; 
+    temp = (temp * 9.0 / 5.0) + 32.0;
     break;
   case K:
     temp += 273.15;
@@ -139,7 +138,7 @@ float SparkFunMAX31855k::readTemp(SparkFunMAX31855k::units _u)
   default:
     break;
   }
-    
+
   return temp;
 }
 
@@ -172,7 +171,7 @@ float SparkFunMAX31855k::readCJT(void)
 
   return ret/16;
 }
- 
+
 ////////////////////////////////////////////////////////////////////////////////
 // Description  : This function checks the fault bits from the MAX31855K IC
 // Input        : None
