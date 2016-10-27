@@ -41,8 +41,7 @@
 // Return       : None
 // Usage        : SparkFunMAX31855k <name>(<pinNumber>);
 ////////////////////////////////////////////////////////////////////////////////
-SparkFunMAX31855k::SparkFunMAX31855k(const uint8_t _cs, const uint8_t _vcc,
-    const uint8_t _gnd) : cs(_cs)
+SparkFunMAX31855k::SparkFunMAX31855k(const uint8_t _cs) : cs(_cs)
 {
   // Redundant with SPI library if using default SS
   pinMode(cs, OUTPUT);
@@ -52,10 +51,10 @@ SparkFunMAX31855k::SparkFunMAX31855k(const uint8_t _cs, const uint8_t _vcc,
   digitalWrite(cs, HIGH);
 
   // Setup two GPIOs as power and ground
-  pinMode(_gnd, OUTPUT);
-  digitalWrite(_gnd, LOW);
-  pinMode(_vcc, OUTPUT);
-  digitalWrite(_vcc, HIGH);
+  //pinMode(_gnd, OUTPUT);
+  //digitalWrite(_gnd, LOW);
+  //pinMode(_vcc, OUTPUT);
+  //digitalWrite(_vcc, HIGH);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
